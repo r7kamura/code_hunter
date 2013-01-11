@@ -22,8 +22,9 @@ module CodeHunter
 
     def merge_git_metadata(warnings)
       warnings.map do |warning|
-        warning.merge(GitBlamer.new(warning).blame)
-      end
+        metadata = GitBlamer.new(warning).blame or next
+        warning.merge(metadata)
+      end.compact
     end
 
     private

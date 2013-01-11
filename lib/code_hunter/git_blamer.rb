@@ -6,7 +6,8 @@ module CodeHunter
     end
 
     def blame
-      parse(invoke)
+      result = invoke
+      parse(result) unless result.empty?
     end
 
     def parse(str)
