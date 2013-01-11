@@ -14,7 +14,7 @@ module CodeHunter
       summary = [
         Brakeman.new(options).run,
         RailsBestPractices.new(options).run,
-      ].inject(:+)
+      ].compact.inject([], :+)
 
       p summary
     end

@@ -26,7 +26,7 @@ module CodeHunter
     private
 
     def clean
-      TEMPORAL_PATHNAME.delete
+      TEMPORAL_PATHNAME.delete if TEMPORAL_PATHNAME.exist?
     end
 
     def summarizer
