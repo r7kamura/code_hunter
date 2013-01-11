@@ -1,11 +1,11 @@
-require "code_hunter/brakeman/invoker"
-require "code_hunter/brakeman/summarizer"
+require "code_hunter/rails_best_practices/invoker"
+require "code_hunter/rails_best_practices/summarizer"
 require "pathname"
 require "tmpdir"
 
 module CodeHunter
-  class Brakeman
-    TEMPORAL_PATHNAME = Pathname.new("#{Dir.tmpdir}/brakeman.html")
+  class RailsBestPractices
+    TEMPORAL_PATHNAME = Pathname.new("#{Dir.tmpdir}/rails_best_practices.html")
 
     attr_reader :options
 

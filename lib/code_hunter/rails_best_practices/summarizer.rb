@@ -1,7 +1,7 @@
 require "nokogiri"
 
 module CodeHunter
-  class Brakeman
+  class RailsBestPractices
     class Summarizer
       attr_reader :options
 
@@ -19,22 +19,18 @@ module CodeHunter
       end
 
       def find_line(element)
-        find_message(element)[/near line (\d+)/, 1].try(:to_i)
-      end
-
-      def find_message(element)
-        element.child.text.strip
+        element.css(".line").text.strip.to_i
       end
 
       def find_path(element)
         File.join(
           application_path,
-          element.css("caption").text.strip
+          element.css(".filename").text.strip
         )
       end
 
       def warning_elements
-        tree.css(".warning_message")
+        tree.css(".result tbody tr")
       end
 
       def tree
@@ -42,7 +38,7 @@ module CodeHunter
       end
 
       def content
-        Brakeman::TEMPORAL_PATHNAME.read
+        RailsBestPractices::TEMPORAL_PATHNAME.read
       end
 
       def application_path
@@ -50,10 +46,10 @@ module CodeHunter
       end
 
       def summarize_with_file_existence_check
-        if Brakeman::TEMPORAL_PATHNAME.exist?
+        if RailsBestPractices::TEMPORAL_PATHNAME.exist?
           summarize_without_file_existence_check
         else
-          warn "Brakeman output file is not found"
+          warn "RailsBestPractices output file is not found"
         end
       end
       alias_method_chain :summarize, :file_existence_check

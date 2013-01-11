@@ -11,15 +11,12 @@ module CodeHunter
     end
 
     def run
-      p collect_brakeman_summary
-    end
+      summary = [
+        Brakeman.new(options).run,
+        RailsBestPractices.new(options).run,
+      ].inject(:+)
 
-    def collect_brakeman_summary
-      brakeman = Brakeman.new(options)
-      brakeman.invoke
-      brakeman.summarize
-    ensure
-      brakeman.clean
+      p summary
     end
   end
 end
