@@ -11,9 +11,7 @@ module CodeHunter
         system(
           "rails_best_practices",
           "--format", "html",
-          "--output-file", RailsBestPractices::TEMPORAL_PATHNAME.to_s,
-          :out => File::NULL,
-          :err => File::NULL,
+          "--output-file", RailsBestPractices::TEMPORAL_PATHNAME.to_s
         )
       end
     end

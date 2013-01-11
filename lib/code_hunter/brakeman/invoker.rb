@@ -10,9 +10,7 @@ module CodeHunter
       def invoke
         system(
           "brakeman",
-          "--output", Brakeman::TEMPORAL_PATHNAME.to_s,
-          :out => File::NULL,
-          :err => File::NULL
+          "--output", Brakeman::TEMPORAL_PATHNAME.to_s
         )
       end
     end
