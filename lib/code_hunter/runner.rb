@@ -17,10 +17,7 @@ module CodeHunter
     end
 
     def collect_warnings
-      [
-        Brakeman.new(options).run,
-        RailsBestPractices.new(options).run,
-      ].compact.inject([], :+)
+      services.map(&:run).compact.inject([], :+)
     end
 
     def merge_git_metadata(warnings)
@@ -31,10 +28,12 @@ module CodeHunter
 
     private
 
+    def services
+      [Brakeman, RailsBestPractices].map {|klass| klass.new(options) }
+    end
+
     def run_with_application_path
-      Dir.chdir(application_path) do
-        run_without_application_path
-      end
+      Dir.chdir(application_path) { run_without_application_path }
     end
     alias_method_chain :run, :application_path
 
