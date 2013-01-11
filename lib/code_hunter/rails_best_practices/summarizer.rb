@@ -12,8 +12,10 @@ module CodeHunter
       def summarize
         warning_elements.map do |element|
           {
-            :line => find_line(element),
-            :path => find_path(element),
+            :service => "rails_best_practices",
+            :line    => find_line(element),
+            :path    => find_path(element),
+            :message => find_message(element),
           }
         end
       end
@@ -24,6 +26,10 @@ module CodeHunter
 
       def find_path(element)
         element.css(".filename").text.strip
+      end
+
+      def find_message(element)
+        element.css(".message").text.strip
       end
 
       def warning_elements

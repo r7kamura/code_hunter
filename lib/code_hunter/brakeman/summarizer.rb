@@ -12,8 +12,10 @@ module CodeHunter
       def summarize
         warning_elements.map do |element|
           {
-            :line => find_line(element),
-            :path => find_path(element),
+            :service => "brakeman",
+            :line    => find_line(element),
+            :path    => find_path(element),
+            :message => find_message(element),
           }
         end
       end
