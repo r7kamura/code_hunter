@@ -23,10 +23,7 @@ module CodeHunter
       end
 
       def find_path(element)
-        File.join(
-          application_path,
-          element.css(".filename").text.strip
-        )
+        element.css(".filename").text.strip
       end
 
       def warning_elements
@@ -40,19 +37,6 @@ module CodeHunter
       def content
         RailsBestPractices::TEMPORAL_PATHNAME.read
       end
-
-      def application_path
-        options[:application_path] || "./"
-      end
-
-      def summarize_with_file_existence_check
-        if RailsBestPractices::TEMPORAL_PATHNAME.exist?
-          summarize_without_file_existence_check
-        else
-          warn "RailsBestPractices output file is not found"
-        end
-      end
-      alias_method_chain :summarize, :file_existence_check
     end
   end
 end

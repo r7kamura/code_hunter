@@ -10,21 +10,10 @@ module CodeHunter
       def invoke
         system(
           "brakeman",
-          "--output", Brakeman::TEMPORAL_PATHNAME.to_s
+          "--output", Brakeman::TEMPORAL_PATHNAME.to_s,
+          :out => File::NULL,
+          :err => File::NULL
         )
-      end
-
-      private
-
-      def invoke_with_application_path
-        Dir.chdir(application_path) do
-          invoke_without_application_path
-        end
-      end
-      alias_method_chain :invoke, :application_path
-
-      def application_path
-        options[:application_path] || "./"
       end
     end
   end

@@ -27,10 +27,7 @@ module CodeHunter
       end
 
       def find_path(element)
-        File.join(
-          application_path,
-          element.css("caption").text.strip
-        )
+        element.css("caption").text.strip
       end
 
       def warning_elements
@@ -43,10 +40,6 @@ module CodeHunter
 
       def content
         Brakeman::TEMPORAL_PATHNAME.read
-      end
-
-      def application_path
-        options[:application_path] || "./"
       end
 
       def summarize_with_file_existence_check
