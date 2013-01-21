@@ -13,7 +13,8 @@ module CodeHunter
     def run
       warnings = collect_warnings
       warnings = merge_git_metadata(warnings)
-      p warnings
+      output   = Renderer.render(warnings, :format => options[:format])
+      puts output
     end
 
     def collect_warnings
