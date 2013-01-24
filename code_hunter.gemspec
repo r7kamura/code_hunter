@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "activesupport"
   gem.add_dependency "brakeman"
   gem.add_dependency "rails_best_practices"
+  gem.add_dependency "pendaxes", "0.2.1"
 
   gem.add_development_dependency "rspec", ">= 2.12.0"
   gem.add_development_dependency "simplecov"

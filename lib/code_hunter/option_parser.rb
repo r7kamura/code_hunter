@@ -26,7 +26,7 @@ module CodeHunter
     end
 
     def options
-      @options ||= {}
+      @options ||= { :application_path => "./" }
     end
 
     private

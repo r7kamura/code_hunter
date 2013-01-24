@@ -31,16 +31,16 @@ module CodeHunter
     private
 
     def services
-      [Brakeman, RailsBestPractices].map {|klass| klass.new(options) }
+      [
+        Pendaxes,
+        Brakeman,
+        RailsBestPractices,
+      ].map {|klass| klass.new(options) }
     end
 
     def run_with_application_path
-      Dir.chdir(application_path) { run_without_application_path }
+      Dir.chdir(options[:application_path]) { run_without_application_path }
     end
     alias_method_chain :run, :application_path
-
-    def application_path
-      options[:application_path] || "./"
-    end
   end
 end
