@@ -1,8 +1,9 @@
 # Code Hunter
-Hunt out weak spots in your rails application with 2 static metrics tools:
+Hunt out weak spots in your rails application with 3 static metrics tools:
 
 * [Brakeman](https://github.com/presidentbeef/brakeman) - A static analysis security vulnerability scanner for Rails
 * [RailsBestPractices](https://github.com/railsbp/rails_best_practices) - A code metric tool for rails projects
+* [Pendaxes](https://github.com/cookpad/pendaxes) - A tool to detect pendings in spec files
 
 ## Installation
 
