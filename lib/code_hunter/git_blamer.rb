@@ -20,7 +20,7 @@ module CodeHunter
     end
 
     def invoke
-      `git blame #{File.realpath(@path)} -L #@line,+1 -l -e -p`
+      `git blame #{File.realpath(@path)} -L #@line,+1 -l -p`
     end
   end
 end
