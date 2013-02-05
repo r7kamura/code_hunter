@@ -16,6 +16,7 @@ module CodeHunter
             :line    => find_line(element),
             :path    => find_path(element),
             :message => find_message(element),
+            :url     => find_url(element),
           }
         end
       end
@@ -30,6 +31,10 @@ module CodeHunter
 
       def find_message(element)
         element.css(".message").text.strip
+      end
+
+      def find_url(element)
+        element.css("a").first.try(:attr, "href")
       end
 
       def warning_elements

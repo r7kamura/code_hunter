@@ -10,14 +10,17 @@ module CodeHunter
       end
 
       def summarize
-        warning_elements.map do |element|
-          {
-            :service => "brakeman",
-            :line    => find_line(element),
-            :path    => find_path(element),
-            :message => find_message(element),
-          }
-        end
+        rows.map do |element|
+          if element.css(".warning_message").any?
+            {
+              :service => "brakeman",
+              :line    => find_line(element),
+              :path    => find_path(element),
+              :message => find_message(element),
+              :url     => find_url(element),
+            }
+          end
+        end.compact
       end
 
       def find_line(element)
@@ -25,15 +28,23 @@ module CodeHunter
       end
 
       def find_message(element)
-        element.child.text.strip
+        element.css(".warning_message").first.child.text.strip
       end
 
       def find_path(element)
-        element.css("caption").text.strip
+        element.css(".warning_message").first.css("caption").text.strip
+      end
+
+      def find_url(element)
+        element.css("a").first.try(:attr, "href")
       end
 
       def warning_elements
         tree.css(".warning_message")
+      end
+
+      def rows
+        tree.css("tr")
       end
 
       def tree
