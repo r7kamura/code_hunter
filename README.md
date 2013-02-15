@@ -15,8 +15,11 @@ $ gem install code_hunter
 ```
 $ code_hunter --help
 Usage: code_hunter [options]
-        --application-path=          (default:   ./) rails application root path
-        --format=                    (default: yaml) output format (yaml or json)
+        --application-path=          (default:    ./) rails application root path
+        --format=                    (default:  yaml) output format (yaml or json)
+        --no-brakeman                (default: false) disable brakeman
+        --no-pendaxes                (default: false) disable pendaxes
+        --no-rails-best-practices    (default: false) disable rails-best-practices
 
 $ code_hunter --application-path /path/to/rails/root
 ...

@@ -3,8 +3,11 @@ require "optparse"
 module CodeHunter
   class OptionParser < ::OptionParser
     OPTIONS = [
-      "--application-path=", "(default:   ./) rails application root path",
-      "--format=",           "(default: yaml) output format (yaml or json)",
+      "--application-path=",       "(default:    ./) rails application root path",
+      "--format=",                 "(default:  yaml) output format (yaml or json)",
+      "--no-brakeman",             "(default: false) disable brakeman",
+      "--no-pendaxes",             "(default: false) disable pendaxes",
+      "--no-rails-best-practices", "(default: false) disable rails-best-practices",
     ]
 
     def self.parse!(argv)
