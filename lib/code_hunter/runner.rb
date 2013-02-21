@@ -12,20 +12,15 @@ module CodeHunter
 
     def run
       warnings = collect_warnings
-      warnings = merge_git_metadata(warnings)
-      output   = Renderer.render(warnings, :format => options[:format])
-      puts output
+      warnings = warnings.select(&:has_git_metadata?)
+      warnings = warnings.reject(&:ignore?)
+      puts Renderer.render(warnings.map(&:to_hash), :format => options[:format])
     end
 
     def collect_warnings
-      services.map(&:run).compact.inject([], :+)
-    end
-
-    def merge_git_metadata(warnings)
-      warnings.map do |warning|
-        metadata = GitBlamer.new(warning).blame or next
-        warning.merge(metadata)
-      end.compact
+      services.map(&:run).compact.inject([], :+).map do |attributes|
+        Warning.new(attributes)
+      end
     end
 
     private

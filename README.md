@@ -49,5 +49,16 @@ $ code_hunter --application-path /path/to/rails/root --format json
 [{"service":"brakeman","line":8,"path":"config/routes.rb","message":"All public methods in controllers are available as actions in routes.rb near line 8","sha1":"81887a2fb6efaa9dae59425ce7537c7905516ed0","author":"Ryo Nakamura","email":"r7kamura@gmail.com","modified_at":1357783853},{"service":"rails_best_practices","line":9,"path":"config/routes.rb","message":"restrict auto-generated routes examples (only: [])","sha1":"81887a2fb6efaa9dae59425ce7537c7905516ed0","author":"Ryo Nakamura","email":"r7kamura@gmail.com","modified_at":1357783853}]
 ```
 
+### Ignore
+If you want to ignore some warnings, write `# ignore` annotation as code comment.  
+If the detected line hits `/#\s*ignore/i`, it is ignored.
+
+```ruby
+danger_but_necessary_code # ignore
+danger_but_necessary_code # IGNORE
+danger_but_necessary_code # Ignore for some reason
+```
+
+
 ## Requirements
 * Ruby >= 1.9
