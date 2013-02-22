@@ -54,9 +54,9 @@ If you want to ignore some warnings, write `# ignore` annotation as code comment
 If the detected line hits `/#\s*ignore/i`, it is ignored.
 
 ```ruby
-danger_but_necessary_code # ignore
-danger_but_necessary_code # IGNORE
-danger_but_necessary_code # Ignore for some reason
+dangerous_but_necessary_code # ignore
+dangerous_but_necessary_code # IGNORE
+dangerous_but_necessary_code # Ignore for some reason
 ```
 
 
