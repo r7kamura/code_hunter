@@ -5,6 +5,8 @@ module CodeHunter
   # Render warnings to string with the specified format.
   # As its format, AVAILABLE_FORMATS are available ("yaml" is default).
   class Renderer
+    extend MethodLogger
+
     AVAILABLE_FORMATS = %w[json yaml]
 
     def self.render(*args)
@@ -26,6 +28,7 @@ module CodeHunter
         raise ArgumentError, "format #{format} is not available. Use #{AVAILABLE_FORMATS}"
       end
     end
+    log(:render)
 
     private
 

@@ -2,6 +2,8 @@ require "json"
 
 module CodeHunter
   class Pendaxes
+    extend MethodLogger
+
     attr_reader :options
 
     def initialize(options = {})
@@ -15,8 +17,9 @@ module CodeHunter
     private
 
     def invoke
-      `pendaxes-oneshot #{options[:application_path]} --reporter json`
+      `pendaxes-oneshot #{options[:application_path]} --reporter json 2>/dev/null `
     end
+    log(:invoke)
 
     def summarize(json)
       pendings = JSON.parse(json)["pendings"]

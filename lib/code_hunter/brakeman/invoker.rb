@@ -1,6 +1,8 @@
 module CodeHunter
   class Brakeman
     class Invoker
+      extend MethodLogger
+
       attr_reader :options
 
       def initialize(options = {})
@@ -10,9 +12,12 @@ module CodeHunter
       def invoke
         system(
           "brakeman",
-          "--output", Brakeman::TEMPORAL_PATHNAME.to_s
+          "--output", Brakeman::TEMPORAL_PATHNAME.to_s,
+          :out => IO::NULL,
+          :err => IO::NULL
         )
       end
+      log(:invoke)
     end
   end
 end
