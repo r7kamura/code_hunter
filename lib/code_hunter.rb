@@ -1,6 +1,7 @@
 require "active_support/all"
 
 require "code_hunter/version"
+require "code_hunter/config"
 require "code_hunter/method_logger"
 require "code_hunter/option_parser"
 require "code_hunter/runner"
