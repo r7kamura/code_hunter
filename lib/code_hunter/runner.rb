@@ -11,16 +11,15 @@ module CodeHunter
     end
 
     def run
-      warnings = collect_warnings
-      warnings = warnings.select(&:has_git_metadata?)
-      warnings = warnings.reject(&:ignore?)
-      puts Renderer.render(warnings.map(&:to_hash), :format => options[:format])
+      Renderer.render(result, :format => options[:format])
     end
 
-    def collect_warnings
-      services.map(&:run).compact.inject([], :+).map do |attributes|
-        Warning.new(attributes)
-      end
+    def result
+      results  = services.map(&:run).compact
+      warnings = results.inject([], :+).map {|attributes| Warning.new(attributes) }
+      warnings = warnings.select(&:has_git_metadata?)
+      warnings = warnings.reject(&:ignore?)
+      warnings.map(&:to_hash)
     end
 
     private

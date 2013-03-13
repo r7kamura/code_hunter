@@ -3,4 +3,4 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "code_hunter"
 
-CodeHunter::Runner.run(ARGV)
+puts CodeHunter::Runner.run(ARGV)
