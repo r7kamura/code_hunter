@@ -32,9 +32,9 @@ module CodeHunter
       array.map {|klass| klass.new(options) }
     end
 
-    def run_with_application_path
-      Dir.chdir(options[:application_path]) { run_without_application_path }
+    def result_with_application_path
+      Dir.chdir(options[:application_path]) { result_without_application_path }
     end
-    alias_method_chain :run, :application_path
+    alias_method_chain :result, :application_path
   end
 end
